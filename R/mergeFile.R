@@ -1,6 +1,6 @@
 mergeFile<-function(){
   allRawData<-NULL
-  dirFiles<-readline(prompt="Please enter the directory of the files:")
+  dirFiles<-readline(prompt="Please ensure all data files are xlsx files and enter the directory of the files:")
   # confirmDir<-0
   # while(confirmDir!=1){
   #   dirFiles<-readline(prompt="Please enter the directory of the files:")
@@ -8,9 +8,10 @@ mergeFile<-function(){
   # }
   setwd(dirFiles)
   myFiles<-list.files()
+  rowToStart<-readline(prompt="Please enter the first row of data in all data files: ")
 
   for(i in 1:length(myFiles)){
-    tempData<-read.xlsx(myFiles[i],sheetIndex=1,startRow=29,header=FALSE)
+    tempData<-read.xlsx(myFiles[i],sheetIndex=1,startRow=rowToStart,header=FALSE)
     tempData$name<-rep(strsplit(myFiles[i],split="[.]")[[1]][1],nrow(tempData))
     allRawData<-rbind(allRawData,tempData)
   }
