@@ -12,5 +12,6 @@ winnie<-function(){
   allData<-subset(data_QF_filtered,select=-INFO)
   allData<-subset(allData,select=-NUMS)
   allData<-cbind(allData,pureINFO,pureNUMS)
+  allData<-onlyRepetitivePos(allData)
   write.xlsx(allData,file="output.xlsx",row.names = FALSE)
 }
