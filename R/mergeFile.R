@@ -17,7 +17,8 @@ mergeFile<-function(){
   rowToStart<-readline(prompt="Please enter the first row of data in all data files: ")
 
   for(i in 1:length(myFiles)){
-    tempData<-read.xlsx(myFiles[i],sheetIndex=1,startRow=rowToStart,header=FALSE)
+
+    tempData<-read.csv(myFiles[i],skip=as.numeric(rowToStart)-1,header=FALSE)
     tempData$name<-rep(strsplit(myFiles[i],split="[.]")[[1]][1],nrow(tempData))
     allRawData<-rbind(allRawData,tempData)
   }
