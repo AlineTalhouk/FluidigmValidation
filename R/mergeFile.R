@@ -14,7 +14,7 @@ mergeFile<-function(){
   # }
   setwd(dirFiles)
   myFiles<-list.files()
-  fileType<-readline(prompt="Enter 1 if all files are xlsx, 2 if all files are csv, or 3 if all files are txt")
+  fileType<-readline(prompt="Enter 1 if all files are xlsx, 2 if all files are csv, or 3 if all files are txt: ")
   rowToStart<-readline(prompt="Please enter the first row of data in all data files: ")
   for(i in 1:length(myFiles)){
     if(as.character(fileType)=="2"){
