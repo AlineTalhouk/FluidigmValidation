@@ -6,7 +6,7 @@
 #' @examples
 mergeFile<-function(){
   allRawData<-NULL
-  dirFiles<-readline(prompt="Please ensure all data files are xlsx files and enter the directory of the files:")
+  dirFiles<-readline(prompt="Please enter the directory of the files:")
   # confirmDir<-0
   # while(confirmDir!=1){
   #   dirFiles<-readline(prompt="Please enter the directory of the files:")
@@ -14,11 +14,16 @@ mergeFile<-function(){
   # }
   setwd(dirFiles)
   myFiles<-list.files()
+  fileType<-readline(prompt="Enter 1 if all files are xlsx, 2 if all files are csv, or 3 if all files are vcf")
   rowToStart<-readline(prompt="Please enter the first row of data in all data files: ")
-
   for(i in 1:length(myFiles)){
-
-    tempData<-read.csv(myFiles[i],skip=as.numeric(rowToStart)-1,header=FALSE)
+    if(as.character(fileType)=="2"){
+      tempData<-read.csv(myFiles[i],skip=as.numeric(rowToStart)-1,header=FALSE)
+    }else if(as.character(fileType)=="1"){
+      tempData<-read.xlsx(myFiles[i],sheetIndex=1,startRow=rowToStart,header=FALSE)
+    }else{
+      print("Call Johnson")
+    }
     tempData$name<-rep(strsplit(myFiles[i],split="[.]")[[1]][1],nrow(tempData))
     allRawData<-rbind(allRawData,tempData)
   }
