@@ -18,7 +18,8 @@ fluidigmValidationMain<-function(){
   allData<-subset(data_QF_filtered,select=-INFO)
   allData<-subset(allData,select=-NUMS)
   allData<-cbind(allData,pureINFO,pureNUMS)
-  write.xlsx(allData,file="output.xlsx",row.names = FALSE,sheetName = "All")
-  allData<-onlyRepetitivePos(allData)
-  write.xlsx(allData,file="output.xlsx",row.names = FALSE,sheetName = "RepetitivePositions",append=TRUE)
+  write.xlsx(allData,file="allOutput.xlsx",row.names = FALSE,sheetName = "allOutput")
+  allRepetitiveData<-onlyRepetitivePos(allData)
+  write.xlsx(allRepetitiveData,file="allOutput.xlsx",row.names = FALSE,sheetName = "allRepetitivePositions",append=TRUE)
+  moreFiles(allRepetitiveData)
 }
