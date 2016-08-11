@@ -15,7 +15,7 @@ moreFiles<-function(allRepetitiveData){
   allRepetitiveData$patientID<-patientIDs
   for(j in 1:length(uniqueIDs)){
     dir.create(uniqueIDs[j])
-    write.xlsx(allRepetitiveData[allRepetitiveData$patientID==uniqueIDs[j],],
+    write.xlsx(subset(allRepetitiveData[allRepetitiveData$patientID==uniqueIDs[j],],select=-patientID),
                file = paste("./",uniqueIDs[j],"/",uniqueIDs[j],".xlsx",sep=""),
                row.names = F,sheetName = uniqueIDs[j])
   }
