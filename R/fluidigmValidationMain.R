@@ -5,7 +5,9 @@
 #'
 #' @examples
 fluidigmValidationMain<-function(){
-  allRawData<-mergeFile()
+  merged<-mergeFile()
+  allRawData<-merged$allRawData
+  allRawFiles<-merged$allRawFiles
   labeledData<-labelNT(allRawData)
   passedData<-filterPASS(labeledData)
   data_INFO_splited<-splitINFO(passedData)
@@ -22,4 +24,12 @@ fluidigmValidationMain<-function(){
   allRepetitiveData<-onlyRepetitivePos(allData)
   write.xlsx(allRepetitiveData,file="allOutput.xlsx",row.names = FALSE,sheetName = "allRepetitivePositions",append=TRUE)
   moreFiles(allRepetitiveData)
+  if(length(allRawFiles)<1){
+    stop("No raw files")
+  }else{
+    for(i in 1:length(allRawFiles)){
+      file.copy(allRawFiles[i],paste(".\\",getPatientID(allRawFiles[i]),"\\",allRawFiles[i],sep=""))
+      file.remove(allRawFiles[i])
+    }
+  }
 }

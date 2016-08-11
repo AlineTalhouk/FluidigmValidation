@@ -24,5 +24,5 @@ mergeFile<-function(){
   }
   allRawData<-allRawData[,c(ncol(allRawData),1:(ncol(allRawData)-1))]
   colnames(allRawData)<-c("Name","#CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
-  return(allRawData)
+  return(list(allRawData=allRawData,allRawFiles=myFiles))
 }
