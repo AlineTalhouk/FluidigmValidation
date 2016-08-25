@@ -7,5 +7,7 @@
 #'
 #' @examples
 filterPASS<-function(df){
-  return(df[which(df$FILTER=="PASS"),])
+  df<-df[df$FILTER=="PASS",]
+  row.names(df)<-1:nrow(df)
+  return(df)
 }
