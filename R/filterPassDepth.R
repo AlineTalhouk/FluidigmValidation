@@ -1,3 +1,12 @@
+#' Title function to subset data that has passed filter and minimum depth requiremtn
+#'
+#' @param data : original data, filter with PASS and other measures and depths of all values
+#' @param minDepth : minimum depth requirement
+#'
+#' @return data that has passed filter and at or deeper than the minimum depth
+#' @export
+#'
+#' @examples
 filterPassDepth<-function(data,minDepth){
   data<-data[data$QUAL==100,]
   data<-data[data$FILTER=="PASS",]

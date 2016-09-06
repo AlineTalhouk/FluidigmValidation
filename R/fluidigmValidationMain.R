@@ -38,6 +38,7 @@ fluidigmValidationMain<-function(){
       dataFromFile<-dataFromFile[dataFromFile$FILTER=="PASS",]
       dataFromFile<-cbind(dataFromFile$Name,subset(dataFromFile,select=-Name))
       colnames(dataFromFile)[1]<-"Name"
+      #Split the NUMS
       tempNUMS<-data.frame(colsplit(dataFromFile$NUMS,split=":",names=c("Unkown1","Quality","AllelicRatio","frequency","Unkown2","Unknown3","Unknown4")))
       dataFromFile<-cbind(subset(dataFromFile,select=-NUMS),tempNUMS)
       #Filter quality
@@ -60,17 +61,17 @@ fluidigmValidationMain<-function(){
     write.xlsx(allData,file=excelName,sheetName="Not filtered",col.names=TRUE,row.names=FALSE, append=TRUE)
     colnames(patientData)[1]<-"Name"
     save(patientData,file=nameToSave)
+    #Label tumor type based on file name
     patientData<-labelTumorType(patientData)
-    #save(patientData,file=nameToSave)
+    #Get only the repetitive positions
     allPos<-data.frame(patientData$POS)
     patientData<-patientData[(duplicated(allPos) | duplicated(allPos[nrow(allPos):1, ])[nrow(allPos):1]),]
     patientData<-patientData[order(patientData$POS),]
+    #Label mutation group (i.e. somatic, germline, normal, or artifact)
     if(!is.null(patientData)){
       patientData<-labelMutationGroup(patientData)
-      #save(patientData,file=nameToSave)
       write.xlsx(patientData,file=excelName,sheetName="Filtered", col.names = TRUE,row.names = FALSE,append=TRUE)
     }
   }
-  #setwd(oldDir)
-  message("Please check all data rows at those positions manually. ")
+  message("If there are exceptions, please check all data rows at those positions manually. ")
 }
