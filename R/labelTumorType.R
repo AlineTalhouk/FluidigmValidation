@@ -22,5 +22,10 @@ labelTumorType<-function(data){
   }
   colnames(data)[1]<-"FileName"
   data$TumorType<-tumorType
+#   tempFileNames<-NULL
+#   for(i in 1:nrow(data)){
+#     tempFileNames<-append(tempFileNames,strsplit(as.character(data$FileName[i]),split="/")[[1]][3])
+#   }
+#   data$FileName<-tempFileNames
   return(data)
 }

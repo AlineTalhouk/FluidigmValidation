@@ -11,9 +11,9 @@ fluidigmValidationMain<-function(){
   minQual<-as.numeric(readline(prompt="Enter the minimum quality number: "))
   minFreq<-as.numeric(readline(prompt="Enter the minimum frequency: "))
   #Create a directory for each patient
-  setwd(dirFiles)
+  #setwd(dirFiles)
   organize(dirFiles)
-  allDirs<-list.dirs(recursive = FALSE) #Get all directories
+  allDirs<-list.dirs(dirFiles,recursive = FALSE) #Get all directories
   tempFiles<-NULL #all files in the directory of a patient
   patientData<-NULL #variable for all useful data of a patient
   tempNUMS<-NULL #varialble for NUMS in a data file
@@ -22,15 +22,15 @@ fluidigmValidationMain<-function(){
   allData<-NULL
   for(i in 1:length(allDirs)){
     allData<-NULL
-    tempFiles<-list.files(allDirs[i])
+    tempFiles<-list.files(allDirs[i],full.names = TRUE)
     patientData<-NULL
     #Names for data to be saved
     nameToSave<-paste(allDirs[i],paste(getPatientID(tempFiles[1]),"passedData.rda",sep="-"),sep="/")
     excelName<-paste(allDirs[i],paste(getPatientID(tempFiles[1]),"passedData.xlsx",sep="_"),sep="/")
     for(j in 1:length(tempFiles)){
-      dataFromFile<-read.table(paste(allDirs[i],tempFiles[j],sep="/"),header=FALSE)
-      names(dataFromFile)<-c("#CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
-      dataFromFile$Name<-rep(tempFiles[j],nrow(dataFromFile))
+      dataFromFile<-read.table(tempFiles[j],header=FALSE)
+      colnames(dataFromFile)<-c("#CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
+      dataFromFile$Name<-rep(strsplit(as.character(tempFiles[j]),split="/")[[1]][3],nrow(dataFromFile))
       allData<-rbind(allData,dataFromFile)
       #allData<-cbind(allData$Name,subset(allData,select=-Name))
 
@@ -59,16 +59,18 @@ fluidigmValidationMain<-function(){
     }
     write.xlsx(allData,file=excelName,sheetName="Not filtered",col.names=TRUE,row.names=FALSE, append=TRUE)
     colnames(patientData)[1]<-"Name"
+    save(patientData,file=nameToSave)
     patientData<-labelTumorType(patientData)
+    #save(patientData,file=nameToSave)
     allPos<-data.frame(patientData$POS)
     patientData<-patientData[(duplicated(allPos) | duplicated(allPos[nrow(allPos):1, ])[nrow(allPos):1]),]
     patientData<-patientData[order(patientData$POS),]
     if(!is.null(patientData)){
       patientData<-labelMutationGroup(patientData)
-      save(patientData,file=nameToSave)
+      #save(patientData,file=nameToSave)
       write.xlsx(patientData,file=excelName,sheetName="Filtered", col.names = TRUE,row.names = FALSE,append=TRUE)
     }
   }
-  setwd(oldDir)
+  #setwd(oldDir)
   message("Please check all data rows at those positions manually. ")
 }

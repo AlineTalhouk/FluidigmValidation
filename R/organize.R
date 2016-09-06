@@ -7,7 +7,8 @@
 #'
 #' @examples
 organize<-function(dirFiles){
-  myFiles<-list.files()
+  myFiles<-list.files(dirFiles)
+  myFilesFull<-paste(dirFiles,list.files(dirFiles),sep="\\")
   if(length(myFiles)<1){
     stop("No raw files. Check the files in the directory you entered")
   }
@@ -17,10 +18,10 @@ organize<-function(dirFiles){
   }
   allPatients<-unique(allPatients)
   for(i in 1:length(allPatients)){
-    dir.create(allPatients[i])
+    dir.create(paste(dirFiles,allPatients[i],sep="\\"))
   }
   for(i in 1:length(myFiles)){
-    file.copy(myFiles[i],paste(".\\",getPatientID(myFiles[i]),"\\",myFiles[i],sep=""))
-    file.remove(myFiles[i])
+    file.copy(myFilesFull[i],paste(dirFiles,"\\",getPatientID(myFiles[i]),"\\",myFiles[i],sep=""))
+    file.remove(myFilesFull[i])
   }
 }
