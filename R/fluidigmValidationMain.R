@@ -25,8 +25,8 @@ fluidigmValidationMain<-function(){
     tempFiles<-list.files(allDirs[i],full.names = TRUE)
     patientData<-NULL
     #Names for data to be saved
-    nameToSave<-paste(allDirs[i],paste(getPatientID(tempFiles[1]),"passedData.rda",sep="-"),sep="/")
-    excelName<-paste(allDirs[i],paste(getPatientID(tempFiles[1]),"passedData.xlsx",sep="_"),sep="/")
+    nameToSave<-paste(allDirs[i],"passedData.rda",sep="\\")
+    excelName<-paste(allDirs[i],"passedData.xlsx",sep="\\")
     for(j in 1:length(tempFiles)){
       dataFromFile<-read.table(tempFiles[j],header=FALSE)
       colnames(dataFromFile)<-c("CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
