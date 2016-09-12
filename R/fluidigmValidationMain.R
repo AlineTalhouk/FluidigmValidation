@@ -29,7 +29,7 @@ fluidigmValidationMain<-function(){
     excelName<-paste(allDirs[i],paste(getPatientID(tempFiles[1]),"passedData.xlsx",sep="_"),sep="/")
     for(j in 1:length(tempFiles)){
       dataFromFile<-read.table(tempFiles[j],header=FALSE)
-      colnames(dataFromFile)<-c("#CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
+      colnames(dataFromFile)<-c("CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
       dataFromFile$Name<-rep(strsplit(as.character(tempFiles[j]),split="/")[[1]][3],nrow(dataFromFile))
       allData<-rbind(allData,dataFromFile)
       #allData<-cbind(allData$Name,subset(allData,select=-Name))

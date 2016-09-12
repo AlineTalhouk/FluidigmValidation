@@ -8,7 +8,8 @@
 #' @examples
 organize<-function(dirFiles){
   myFiles<-list.files(dirFiles)
-  myFilesFull<-paste(dirFiles,list.files(dirFiles),sep="\\")
+  myFiles<-myFiles[myFiles!="Mutation for every amplicons.xls"]
+  myFilesFull<-paste(dirFiles,myFiles,sep="\\")
   if(length(myFiles)<1){
     stop("No raw files. Check the files in the directory you entered")
   }
