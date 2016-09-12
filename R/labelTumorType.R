@@ -16,8 +16,10 @@ labelTumorType<-function(data){
       tumorType<-append(tumorType,"N")
     }else if(tempTumorType=="OP"){
       tumorType<-append(tumorType,"T2")
-    }else{
+    }else if(tempTumorType=="Curettage"){
       tumorType<-append(tumorType,"T1")
+    }else{
+      stop(paste("Cannot get tumor type from file:",data$Name[i],". Please check file name"))
     }
   }
   colnames(data)[1]<-"FileName"
