@@ -1,6 +1,7 @@
 processAmpliconInfo<-function(ampliconInfo,data){
   allDepth<-NULL
   chunk<-NULL
+  ampliconInfo$Position<-ceiling(ampliconInfo$Position)
   for(i in 1:nrow(ampliconInfo)){
     chunk<-subset(data,POS==ampliconInfo$Position[i]&CHROM==ampliconInfo$Chrom[i])
     if(nrow(chunk)<1){
