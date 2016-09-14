@@ -56,7 +56,7 @@ labelMutationGroup<-function(data){
       }else if(twiceT1(tempGroup) && onceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("NA",length(tempGroup))
         toAdd[which(tempGroup=="T1")]<-"Germline"
-        toAdd[which(tempGroup)=="T2"]<-"Artifact"
+        toAdd[which(tempGroup=="T2")]<-"Artifact"
         mutationGroup<-append(mutationGroup,toAdd)
         #print("case 10")
       }else if(twiceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){

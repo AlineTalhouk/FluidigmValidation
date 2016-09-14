@@ -6,7 +6,6 @@
 #' @examples
 fluidigmValidationMain<-function(){
   #Get user inputs
-  oldDir<-getwd()
   dirFiles<-readline(prompt="Please enter the directory of the files:")
   minQual<-as.numeric(readline(prompt="Enter the minimum quality number: "))
   minFreq<-as.numeric(readline(prompt="Enter the minimum frequency: "))
@@ -23,10 +22,11 @@ fluidigmValidationMain<-function(){
   for(i in 1:length(allDirs)){
     allData<-NULL
     tempFiles<-list.files(allDirs[i],full.names = TRUE)
+    tempFilesShort<-list.files(allDirs[i])
     patientData<-NULL
     #Names for data to be saved
-    nameToSave<-paste(allDirs[i],"passedData.rda",sep="\\")
-    excelName<-paste(allDirs[i],"passedData.xlsx",sep="\\")
+    nameToSave<-paste(allDirs[i],paste(getPatientID(tempFilesShort[1]),"_passedData.rda",sep=""),sep="\\")
+    excelName<-paste(allDirs[i],paste(getPatientID(tempFilesShort[1]),"_passedData.xlsx",sep=""),sep="\\")
     for(j in 1:length(tempFiles)){
       dataFromFile<-read.table(tempFiles[j],header=FALSE)
       colnames(dataFromFile)<-c("CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
