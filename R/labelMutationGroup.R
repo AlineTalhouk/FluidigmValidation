@@ -90,7 +90,7 @@ labelMutationGroup<-function(data){
         #print("case 14")
       }else{
         mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
-        message("Very strange case. Please contact programmer ASAP.")
+        stop("Strange case that has broken the 14 cases and not thrown an exception. Contact programmer ASAP")
       }
     }else{
       mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
