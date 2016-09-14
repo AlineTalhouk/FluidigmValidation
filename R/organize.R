@@ -9,7 +9,7 @@
 organize<-function(dirFiles){
   myFiles<-list.files(dirFiles)
   myFiles<-myFiles[myFiles!="Mutation for every amplicons.xls"]
-  myFilesFull<-paste(dirFiles,myFiles,sep="\\")
+  myFilesFull<-paste(dirFiles,myFiles,sep="/")
   if(length(myFiles)<1){
     stop("No raw files. Check the files in the directory you entered")
   }
@@ -19,10 +19,10 @@ organize<-function(dirFiles){
   }
   allPatients<-unique(allPatients)
   for(i in 1:length(allPatients)){
-    dir.create(paste(dirFiles,allPatients[i],sep="\\"))
+    dir.create(paste(dirFiles,allPatients[i],sep="/"))
   }
   for(i in 1:length(myFiles)){
-    file.copy(myFilesFull[i],paste(dirFiles,"\\",getPatientID(myFiles[i]),"\\",myFiles[i],sep=""))
+    file.copy(myFilesFull[i],paste(dirFiles,"/",getPatientID(myFiles[i]),"/",myFiles[i],sep=""))
     file.remove(myFilesFull[i])
   }
 }

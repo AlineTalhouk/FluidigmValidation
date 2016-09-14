@@ -25,16 +25,16 @@ fluidigmValidationMain<-function(){
   allData<-NULL
   for(i in 1:length(allDirs)){
     allData<-NULL
-    tempFiles<-list.files(allDirs[i],full.names = TRUE)
-    tempFilesShort<-list.files(allDirs[i])
+    tempFiles<-sort(list.files(allDirs[i],full.names = TRUE))
+    tempFilesShort<-sort(list.files(allDirs[i]))
     patientData<-NULL
     #Names for data to be saved
-    nameToSave<-paste(allDirs[i],paste(getPatientID(tempFilesShort[1]),"_passedData.rda",sep=""),sep="\\")
-    excelName<-paste(allDirs[i],paste(getPatientID(tempFilesShort[1]),"_passedData.xlsx",sep=""),sep="\\")
+    nameToSave<-paste(allDirs[i],paste(getPatientID(tempFilesShort[1]),"_passedData.rda",sep=""),sep="/")
+    excelName<-paste(allDirs[i],paste(getPatientID(tempFilesShort[1]),"_passedData.xlsx",sep=""),sep="/")
     for(j in 1:length(tempFiles)){
       dataFromFile<-read.table(tempFiles[j],header=FALSE)
       colnames(dataFromFile)<-c("CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
-      dataFromFile$Name<-rep(strsplit(as.character(tempFiles[j]),split="/")[[1]][3],nrow(dataFromFile))
+      dataFromFile$Name<-rep(tempFilesShort[j],nrow(dataFromFile))
       allData<-rbind(allData,dataFromFile)
       #allData<-cbind(allData$Name,subset(allData,select=-Name))
 
