@@ -68,9 +68,11 @@ fluidigmValidationMain<-function(){
     patientData<-patientData[(duplicated(allPos) | duplicated(allPos[nrow(allPos):1, ])[nrow(allPos):1]),]
     patientData<-patientData[order(patientData$POS),]
     #Label mutation group (i.e. somatic, germline, normal, or artifact)
-    if(!is.null(patientData)){
+    if(nrow(patientData)>0){
       patientData<-labelMutationGroup(patientData)
       write.xlsx(patientData,file=excelName,sheetName="Filtered", col.names = TRUE,row.names = FALSE,append=TRUE)
+    }else{
+      message(paste("No data after filtering for patient",getPatientID(tempFilesShort[1]),"."))
     }
   }
   message("If there are exceptions, please check all data rows at those positions manually. ")
