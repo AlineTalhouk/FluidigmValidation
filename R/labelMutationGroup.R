@@ -7,6 +7,9 @@
 #'
 #' @examples
 labelMutationGroup<-function(data){
+  if(!is.numeric(data$POS)){
+    stop("Positions in data are not numeric or data is empty.")
+  }
   allPos<-unique(data$POS)
   chunk<-NULL
   mutationGroup<-NULL
@@ -77,6 +80,7 @@ labelMutationGroup<-function(data){
     }else{
       mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
       message(paste("Attention please: exception found for patient",getPatientID(as.character(data[1,1])),"Position ",allPos[i]))
+      message(paste("There are",length(tempGroup),"rows of data at this position"))
       #print("Please check all data rows at those positions manually. ")
     }
   }

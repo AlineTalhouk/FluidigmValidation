@@ -7,5 +7,9 @@
 #'
 #' @examples "PAT-ID33-DNA-ID141-Curettage-E4_S122" returns "ID33"
 getPatientID<-function(fileName){
-  return(strsplit(fileName,split="[-]")[[1]][2])
+  if(!is.character(fileName)){
+    stop(paste("Error in getPatientID, file name", fileName, "is not character"))
+  }
+  patientID<-strsplit(fileName,split="[-]")[[1]][2]
+  return(patientID)
 }
