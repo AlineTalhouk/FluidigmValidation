@@ -36,16 +36,21 @@ labelMutationGroup<-function(data){
         mutationGroup<-append(mutationGroup,toAdd)
         #print("case 4")
       }else if(onceT1(tempGroup) && onceT2(tempGroup) && onceN(tempGroup)){
-        mutationGroup<-append(mutationGroup,rep("Artifact",length(tempGroup)))
+        toAdd<-rep("Artifact",length(tempGroup));
+        toAdd[which(tempGroup=="N")]<-"Normal"
+        mutationGroup<-append(mutationGroup,toAdd)
         #print("case 5")
       }else if(onceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("NA",length(tempGroup))
         toAdd[which(tempGroup=="T2")]<-"Germline"
         toAdd[which(tempGroup=="T1")]<-"Artifact"
+        toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
         #print("case 6")
       }else if(onceT1(tempGroup) && !onceT2(tempGroup) && !twiceT2(tempGroup) && onceN(tempGroup)){
-        mutationGroup<-append(mutationGroup,rep("Artifact",length(tempGroup)))
+        toAdd<-rep("Artifact",length(tempGroup))
+        toAdd[which(tempGroup=="N")]<-"Normal"
+        mutationGroup<-append(mutationGroup,toAdd)
         #print("case 7")
       }else if(twiceT1(tempGroup) && onceT2(tempGroup) && !onceN(tempGroup)){
         toAdd<-rep("NA",length(tempGroup))
@@ -60,22 +65,32 @@ labelMutationGroup<-function(data){
         toAdd<-rep("NA",length(tempGroup))
         toAdd[which(tempGroup=="T1")]<-"Germline"
         toAdd[which(tempGroup=="T2")]<-"Artifact"
+        toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
         #print("case 10")
       }else if(twiceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){
-        mutationGroup<-append(mutationGroup,rep("Germline",length(tempGroup)))
+        toAdd<-rep("Germline",length(tempGroup))
+        toAdd[which(tempGroup=="N")]<-"Normal"
+        mutationGroup<-append(mutationGroup,toAdd)
         #print("case 11")
       }else if(twiceT1(tempGroup) && !onceT2(tempGroup) && !twiceT2(tempGroup) && onceN(tempGroup)){
-        mutationGroup<-append(mutationGroup,rep("Germline",length(tempGroup)))
+        toAdd<-rep("Germline",length(tempGroup))
+        toAdd[which(tempGroup=="N")]<-"Normal"
+        mutationGroup<-append(mutationGroup,toAdd)
+        #print("case 12)
       }else if(!onceT1(tempGroup) && !twiceT1(tempGroup) && onceT2(tempGroup) && onceN(tempGroup)){
-        mutationGroup<-append(mutationGroup,rep("Artifact",length(tempGroup)))
-        #print("case 12")
-      }else if(!onceT1(tempGroup) && !twiceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){
-        mutationGroup<-append(mutationGroup,rep("Germline",length(tempGroup)))
+        toAdd<-rep("Artifact",length(tempGroup))
+        toAdd[which(tempGroup=="N")]<-"Normal"
+        mutationGroup<-append(mutationGroup,toAdd)
         #print("case 13")
+      }else if(!onceT1(tempGroup) && !twiceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){
+        toAdd<-rep("Germline",length(tempGroup))
+        toAdd[which(tempGroup=="N")]<-"Normal"
+        mutationGroup<-append(mutationGroup,toAdd)
+        #print("case 14")
       }else{
         mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
-        #print(paste("Attention please: ",getPatientID(as.character(data[1,1]))))
+        message("Very strange case. Please contact programmer ASAP.")
       }
     }else{
       mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
@@ -83,7 +98,7 @@ labelMutationGroup<-function(data){
       message(paste("There are",length(tempGroup),"rows of data at this position"))
     }
   }
-  mutationGroup[which(data$TumorType=="N")]<-"NORMAL"
+  #mutationGroup[which(data$TumorType=="N")]<-"NORMAL"
   data$mutationGroup<-mutationGroup
   return(data)
 }
