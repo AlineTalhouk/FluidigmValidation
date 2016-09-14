@@ -7,6 +7,10 @@
 fluidigmValidationMain<-function(){
   #Get user inputs
   dirFiles<-readline(prompt="Please enter the directory of the files:")
+  #If the operating system is not windows, rename files to windows
+  if(Sys.info()["sysname"]!="Windows"){
+    renameToTxt(dirFiles)
+  }
   minQual<-as.numeric(readline(prompt="Enter the minimum quality number: "))
   minFreq<-as.numeric(readline(prompt="Enter the minimum frequency: "))
   #Create a directory for each patient
