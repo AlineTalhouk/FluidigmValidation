@@ -1,12 +1,16 @@
 Package: FluidigmValidation
-Title: What the Package Does (one line, title case)
+Title: VALIDATE FLUIDIGM MACHINE DATA
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Authors@R: person("Geyi", "Liu", email = "gliu@bccrc.ca", role = c("aut", "cre"))
+Description:It has functionalities to parse and filter fluidigm data based on user-defined freuqncy,
+    depth, and quality thresholds. It can also label tumor type for each row as T1, T2, or N based on+
+    file name. Mutation type (i.e. somatic, germline, normal, artifact are also labeled). It can also
+    tell if a data file has enough useful data based on user-inputs.
 Depends:
     reshape,
     xlsx,
-    XLConnect
+    XLConnect,
+    RUnit
 License: What license is it under?
 Encoding: UTF-8
 LazyData: true
