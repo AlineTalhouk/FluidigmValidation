@@ -22,72 +22,72 @@ labelMutationGroup<-function(data){
     if(notMutationGroupException(tempGroup)){
       if(twiceT1(tempGroup) && !twiceT2(tempGroup) && !onceT2(tempGroup) && !onceN(tempGroup)){
         mutationGroup<-append(mutationGroup,rep("Somatic",length(tempGroup)))
-        print("case 1")
+        print(paste("Position",allPos[i],"case 1"))
       }else if(!twiceT1(tempGroup) && !onceT1(tempGroup) && twiceT2(tempGroup) && !onceN(tempGroup)){
         mutationGroup<-append(mutationGroup,rep("Somatic",length(tempGroup)))
-        print("case 2")
+        print(paste("Position",allPos[i],"case 2"))
       }else if(onceT1(tempGroup) && onceT2(tempGroup) && !onceN(tempGroup)){
         mutationGroup<-append(mutationGroup,rep("Artifact",length(tempGroup)))
-        print("case 3")
+        print(paste("Position",allPos[i],"case 3"))
       }else if(onceT1(tempGroup) && twiceT2(tempGroup) && !onceN(tempGroup)){
         toAdd<-rep("NA",length(tempGroup))
         toAdd[which(tempGroup=="T2")]<-"Somatic"
         toAdd[which(tempGroup=="T1")]<-"Artifact"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 4")
+        print(paste("Position",allPos[i],"case 4"))
       }else if(onceT1(tempGroup) && onceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("Artifact",length(tempGroup));
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 5")
+        print(paste("Position",allPos[i],"case 5"))
       }else if(onceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("NA",length(tempGroup))
         toAdd[which(tempGroup=="T2")]<-"Germline"
         toAdd[which(tempGroup=="T1")]<-"Artifact"
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 6")
+        print(paste("Position",allPos[i],"case 6"))
       }else if(onceT1(tempGroup) && !onceT2(tempGroup) && !twiceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("Artifact",length(tempGroup))
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 7")
+        print(paste("Position",allPos[i],"case 7"))
       }else if(twiceT1(tempGroup) && onceT2(tempGroup) && !onceN(tempGroup)){
         toAdd<-rep("NA",length(tempGroup))
         toAdd[which(tempGroup=="T1")]<-"Somatic"
         toAdd[which(tempGroup=="T2")]<-"Artifact"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 8")
+        print(paste("Position",allPos[i],"case 8"))
       }else if(twiceT1(tempGroup) && twiceT2(tempGroup) && !onceN(tempGroup)){
         mutationGroup<-append(mutationGroup,rep("Somatic",length(tempGroup)))
-        print("case 9")
+        print(paste("Position",allPos[i],"case 9"))
       }else if(twiceT1(tempGroup) && onceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("NA",length(tempGroup))
         toAdd[which(tempGroup=="T1")]<-"Germline"
         toAdd[which(tempGroup=="T2")]<-"Artifact"
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 10")
+        print(paste("Position",allPos[i],"case 10"))
       }else if(twiceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("Germline",length(tempGroup))
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 11")
+        print(paste("Position",allPos[i],"case 11"))
       }else if(twiceT1(tempGroup) && !onceT2(tempGroup) && !twiceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("Germline",length(tempGroup))
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 12")
+        print(paste("Position",allPos[i],"case 12"))
       }else if(!onceT1(tempGroup) && !twiceT1(tempGroup) && onceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("Artifact",length(tempGroup))
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 13")
+        print(paste("Position",allPos[i],"case 13"))
       }else if(!onceT1(tempGroup) && !twiceT1(tempGroup) && twiceT2(tempGroup) && onceN(tempGroup)){
         toAdd<-rep("Germline",length(tempGroup))
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
-        print("case 14")
+        print(paste("Position",allPos[i],"case 14"))
       }else{
         mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
         stop("Strange case that has broken the 14 cases and not thrown an exception. Contact programmer ASAP")

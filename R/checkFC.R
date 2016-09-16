@@ -2,7 +2,7 @@
 #'
 #' @param data : data with INFO column splited
 #'
-#' @return
+#' @return data that met FC criteria that rows with only Silent_something, Silent, Synonymous_something, Synonymous are deleted
 #' @export
 #'
 #' @examples

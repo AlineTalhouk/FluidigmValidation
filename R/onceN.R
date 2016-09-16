@@ -7,6 +7,8 @@
 #'
 #' @examples
 onceN<-function(vec){
+  stopifnot(is.character(vec))
+  stopifnot(sum(!unique(vec)%in%c("N","T1","T2"))==0)
   if(sum(vec=="N")==1){
     return(TRUE)
   }else{

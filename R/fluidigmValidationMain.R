@@ -27,6 +27,7 @@ fluidigmValidationMain<-function(){
     allData<-NULL
     tempFiles<-sort(list.files(allDirs[i],full.names = TRUE))
     tempFilesShort<-sort(list.files(allDirs[i]))
+    message(paste("Working on patient",getPatientID(tempFilesShort[1])))
     patientData<-NULL
     #Names for data to be saved
     nameToSave<-paste(allDirs[i],paste(getPatientID(tempFilesShort[1]),"_passedData.rda",sep=""),sep="/")

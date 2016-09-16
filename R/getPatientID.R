@@ -10,6 +10,8 @@ getPatientID<-function(fileName){
   if(!is.character(fileName)){
     stop(paste("Error in getPatientID, file name", fileName, "is not character"))
   }
+  stopifnot(strsplit(fileName,split="[-]")[[1]][1]=="PAT")
   patientID<-strsplit(fileName,split="[-]")[[1]][2]
+  stopifnot(substr(patientID,1,2)=="ID")
   return(patientID)
 }

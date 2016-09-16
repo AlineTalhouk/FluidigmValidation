@@ -8,11 +8,14 @@
 #' @examples
 organize<-function(dirFiles){
   myFiles<-list.files(dirFiles)
-  myFiles<-myFiles[myFiles!="Mutation for every amplicons.xls"]
-  myFilesFull<-paste(dirFiles,myFiles,sep="/")
   if(length(myFiles)<1){
     stop("No raw files. Check the files in the directory you entered")
   }
+  myFiles<-myFiles[myFiles!="Mutation for every amplicons.xls"]
+  if(length(myFiles)<1){
+    stop("No raw files except the excel sheet for amplicons. Check the files in the directory you entered")
+  }
+  myFilesFull<-paste(dirFiles,myFiles,sep="/")
   allPatients<-NULL
   for(i in 1:length(myFiles)){
     allPatients<-append(allPatients,strsplit(myFiles[i],split="[-]")[[1]][2])
