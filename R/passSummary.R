@@ -7,10 +7,13 @@
 passSummary<-function(){
   #oldDir<-getwd()
   dirFiles<-readline(prompt="Please enter the directory of the files:")
+  if(Sys.info()["sysname"]!="Windows"){
+    renameToTxt(dirFiles)
+  }
   minRows<-as.numeric(readline(prompt="Enter the minimum number of rows for the file to be labelled pass: "))
   minDepth<-as.numeric(readline(prompt="Enter the minimum depth: "))
   #setwd(dirFiles)
-  ampliconInfo<-read.xlsx(paste(dirFiles,"\\Mutation for every amplicons.xls",sep=""),sheetIndex = 1,header=TRUE)
+  ampliconInfo<-read.xlsx(paste(dirFiles,"/Mutation for every amplicons.xls",sep=""),sheetIndex = 1,header=TRUE)
   organize(dirFiles)
   filteredSheetName<-NULL
   allFileNames<-NULL
@@ -25,10 +28,12 @@ passSummary<-function(){
     stop("Nothing in directory for passSummary")
   }
   tempFiles<-NULL #all files in the directory of a patient
+  tempFilesShort<-NULL
   for(i in 1:length(allDirs)){
-    tempFiles<-list.files(allDirs[i],full.names = TRUE)
+    tempFiles<-sort(list.files(allDirs[i],full.names = TRUE))
+    tempFilesShort<-sort(list.files(allDirs[i]))
     for(j in 1:length(tempFiles)){
-      allFileNames<-append(allFileNames,strsplit(as.character(tempFiles[j]),split="/")[[1]][3])
+      allFileNames<-append(allFileNames,tempFilesShort[j])
       excelName<-paste(tempFiles[j],".xlsx",sep="")
       #excelName<-paste(allDirs[i],excelName,sep="/")
       dataFromFile<-read.table(tempFiles[j],header = FALSE)
@@ -58,6 +63,6 @@ passSummary<-function(){
   rownames(allAmpliconInfo)<-allFileNames
   #setwd(oldDir)
   #Ouput all data to another excel sheet
-  write.xlsx(data.frame(fileName=allFileNames,NumberOfRows=allFileRows,PassOrNot=allFilePass),file=paste(dirFiles,"passSummary.xlsx",sep="\\"),row.names = FALSE,col.names = TRUE)
-  write.xlsx(allAmpliconInfo,file=paste(dirFiles,"passSummary.xlsx",sep="\\"),row.names = TRUE,col.names = TRUE,sheetName="AmpliconInfo",append=TRUE)
+  write.xlsx(data.frame(fileName=allFileNames,NumberOfRows=allFileRows,PassOrNot=allFilePass),file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = FALSE,col.names = TRUE)
+  write.xlsx(allAmpliconInfo,file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = TRUE,col.names = TRUE,sheetName="AmpliconInfo",append=TRUE)
 }
