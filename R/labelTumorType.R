@@ -8,9 +8,12 @@
 #'
 #' @examples
 labelTumorType<-function(data){
+  stopifnot(is.data.frame(data))
+  stopifnot(!is.null(data$Name))
   tumorType<-NULL
   tempTumorType<-NULL
   for (i in 1:nrow(data)){
+    stopifnot(length(strsplit(as.character(data$Name)[i],split="-")[[1]])==6)
     tempTumorType<-strsplit(as.character(data$Name)[i],split="-")[[1]][5]
     if(tempTumorType=="NORMAL"){
       tumorType<-append(tumorType,"N")
