@@ -10,6 +10,9 @@ labelMutationGroup<-function(data){
   if(!is.numeric(data$POS)){
     stop("Positions in data are not numeric or data is empty.")
   }
+  if(is.null(data$TumorType)){
+    stop("Tumor type is not labelled. ")
+  }
   allPos<-unique(data$POS)
   chunk<-NULL
   mutationGroup<-NULL

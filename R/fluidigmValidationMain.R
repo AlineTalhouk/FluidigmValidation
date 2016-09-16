@@ -7,6 +7,8 @@
 fluidigmValidationMain<-function(){
   #Get user inputs
   dirFiles<-readline(prompt="Please enter the directory of the files:")
+  stopifnot(dir.exists(dirFiles))
+  checkAllFiles(dirFiles,1)
   #If the operating system is not windows, rename files to windows
   if(Sys.info()["sysname"]!="Windows"){
     renameToTxt(dirFiles)

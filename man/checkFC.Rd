@@ -9,6 +9,9 @@ checkFC(data)
 \arguments{
 \item{data}{: data with INFO column splited}
 }
+\value{
+data that met FC criteria that rows with only Silent_something, Silent, Synonymous_something, Synonymous are deleted
+}
 \description{
 Title function to check FC
 }

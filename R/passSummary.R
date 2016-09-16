@@ -7,6 +7,8 @@
 passSummary<-function(){
   #oldDir<-getwd()
   dirFiles<-readline(prompt="Please enter the directory of the files:")
+  stopifnot(dir.exists(dirFiles))
+  checkAllFiles(dirFiles,2)
   if(Sys.info()["sysname"]!="Windows"){
     renameToTxt(dirFiles)
   }
