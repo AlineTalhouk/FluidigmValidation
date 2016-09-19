@@ -2,7 +2,7 @@
 % Please edit documentation in R/filterPassDepth.R
 \name{filterPassDepth}
 \alias{filterPassDepth}
-\title{Title function to subset data that has passed filter and minimum depth requiremtn}
+\title{Title function to subset data that has passed filter and minimum depth requirement. Important: do not call this function if you intend to filter according to quality number}
 \usage{
 filterPassDepth(data, minDepth)
 }
@@ -15,6 +15,6 @@ filterPassDepth(data, minDepth)
 data that has passed filter and at or deeper than the minimum depth
 }
 \description{
-Title function to subset data that has passed filter and minimum depth requiremtn
+Title function to subset data that has passed filter and minimum depth requirement. Important: do not call this function if you intend to filter according to quality number
 }
 

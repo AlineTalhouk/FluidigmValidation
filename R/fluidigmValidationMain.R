@@ -39,19 +39,9 @@ fluidigmValidationMain<-function(){
       colnames(dataFromFile)<-c("CHROM","POS","ID","REF","ALT","QUAL","FILTER","INFO","FORMAT","NUMS")
       dataFromFile$Name<-rep(tempFilesShort[j],nrow(dataFromFile))
       allData<-rbind(allData,dataFromFile)
-      #allData<-cbind(allData$Name,subset(allData,select=-Name))
+      #Filter quality and frequency
+      dataFromFile<-filterQualityFrequency(data=dataFromFile,minQual=minQual,minFreq=minFreq)
 
-      #Filter pass only
-      dataFromFile<-dataFromFile[dataFromFile$FILTER=="PASS",]
-      dataFromFile<-cbind(dataFromFile$Name,subset(dataFromFile,select=-Name))
-      colnames(dataFromFile)[1]<-"Name"
-      #Split the NUMS
-      tempNUMS<-data.frame(colsplit(dataFromFile$NUMS,split=":",names=c("Unkown1","Quality","AllelicRatio","frequency","Unkown2","Unknown3","Unknown4")))
-      dataFromFile<-cbind(subset(dataFromFile,select=-NUMS),tempNUMS)
-      #Filter quality
-      dataFromFile<-dataFromFile[dataFromFile$Quality>=minQual,]
-      #filter frequency
-      dataFromFile<-dataFromFile[dataFromFile$frequency>=minFreq,]
       #Split INFO and only keep EXON observations
       if(nrow(dataFromFile)>0){
         dataFromFile<-splitINFO(dataFromFile)

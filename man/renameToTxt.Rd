@@ -2,7 +2,7 @@
 % Please edit documentation in R/renameToTxt.R
 \name{renameToTxt}
 \alias{renameToTxt}
-\title{Title function to rename vcf files to txt files in not using Windows machine}
+\title{Title function to rename vcf files to txt files in not using Windows machine if the files are not already txt files}
 \usage{
 renameToTxt(dirFiles)
 }
@@ -10,7 +10,7 @@ renameToTxt(dirFiles)
 \item{dirFiles}{: directory for all files at the beginning of the program}
 }
 \description{
-Title function to rename vcf files to txt files in not using Windows machine
+Title function to rename vcf files to txt files in not using Windows machine if the files are not already txt files
 }
 \examples{
 "PAT-ID95-DNA-ID149-OP-D2_S12.vcf" would become "PAT-ID95-DNA-ID149-OP-D2_S12.txt"
