@@ -13,9 +13,13 @@ splitINFO<-function(data){
   GI<-NULL
   FC<-NULL
   EXON<-NULL
+  if(is.null(data$INFO)){
+    stop("Data does not have INFO to be splited.")
+  }
   for(i in 1:nrow(data)){
     vec<-strsplit(as.vector(data$INFO[i]),split=";")[[1]]
     vec<-strsplit(vec,split="=")
+    stopifnot(length(vec)%in%c(4,5))
     DP<-append(DP,vec[[1]][2])
     TI<-append(TI,vec[[2]][2])
     GI<-append(GI,vec[[3]][2])
