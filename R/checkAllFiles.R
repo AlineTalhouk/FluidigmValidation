@@ -35,17 +35,7 @@ checkAllFiles<-function(dirFiles,funInd){
     }
     allFiles<-allFiles[allFiles!="Mutation for every amplicons.xls"]
     for(i in 1:length(allFiles)){
-      if(length(strsplit(allFiles[i],split="-")[[1]])!=5){
-        stop(paste(allFiles[i],"is not properly named"))
-      }else if(strsplit(allFiles[i],split="-")[[1]][1]!="PAT"){
-        stop(paste(allFiles[i],"does not start with PAT-"))
-      }else if(substr(strsplit(allFiles[i],split="-")[[1]][2],1,2)!="ID"){
-        stop(paste(allFiles[i],"does not have proper patient ID"))
-      }else if(strsplit(allFiles[i],split="-")[[1]][3]!="DNA"){
-        stop(paste(allFiles[i],"does not have proper DNA"))
-      }else if(substr(strsplit(allFiles[i],split="-")[[1]][4],1,2)!="ID"){
-        stop(paste(allFiles[i],"DNA ID is missing or improperly named"))
-      }
+      message("Not checking file names for passSummary.")
     }
   }
 }
