@@ -61,9 +61,7 @@ fluidigmValidationMain<-function(){
     #Label tumor type based on file name
     patientData<-labelTumorType(patientData)
     #Get only the repetitive positions
-    allPos<-data.frame(patientData$POS)
-    patientData<-patientData[(duplicated(allPos) | duplicated(allPos[nrow(allPos):1, ])[nrow(allPos):1]),]
-    patientData<-patientData[order(patientData$POS),]
+    patientData<-onlyRepetitivePos(patientData)
     #Label mutation group (i.e. somatic, germline, normal, or artifact)
     if(nrow(patientData)>0){
       patientData<-labelMutationGroup(patientData)

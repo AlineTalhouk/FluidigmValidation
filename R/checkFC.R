@@ -10,6 +10,9 @@ checkFC<-function(data){
   vec<-NULL #vector for a string of FC values before parsing
   tempTypes<-NULL #variable for temporary FC values
   FC_label<-NULL #variable for storing whether a row pass or not based on FC
+  if(is.null(data$FC)){
+    stop("Data does not have FC")
+  }
   for(i in 1:nrow(data)){
     tempTypes<-NULL
     vec<-strsplit(as.vector(data$FC[i]),split=",")[[1]]
