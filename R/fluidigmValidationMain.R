@@ -58,12 +58,12 @@ fluidigmValidationMain<-function(){
     write.xlsx(allData,file=excelName,sheetName="Not filtered",col.names=TRUE,row.names=FALSE, append=TRUE)
     colnames(patientData)[1]<-"Name"
     save(patientData,file=nameToSave)
+    #Get only the repetitive positions
+    patientData<-onlyRepetitivePos(patientData)
     #Label tumor type based on file name
     if(nrow(patientData)>0){
       patientData<-labelTumorType(patientData)
     }
-    #Get only the repetitive positions
-    patientData<-onlyRepetitivePos(patientData)
     #Label mutation group (i.e. somatic, germline, normal, or artifact)
     if(nrow(patientData)>0){
       patientData<-labelMutationGroup(patientData)

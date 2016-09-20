@@ -8,7 +8,7 @@
 #'
 #' @examples
 checkAllFiles<-function(dirFiles,funInd){
-  stopifnot(funInd %in% c(1,2))
+  assert_that(funInd %in% c(1,2))
   allFiles<-list.files(dirFiles)
   allFiles<-allFiles[allFiles!="Mutation for every amplicons.xls"]
   if(funInd==1){

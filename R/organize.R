@@ -7,6 +7,7 @@
 #'
 #' @examples
 organize<-function(dirFiles){
+  assert_that(dir.exists(dirFiles))
   myFiles<-list.files(dirFiles)
   if(length(myFiles)<1){
     stop("No raw files. Check the files in the directory you entered")

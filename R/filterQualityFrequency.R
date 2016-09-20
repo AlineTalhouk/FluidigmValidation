@@ -10,10 +10,10 @@
 #' @examples
 filterQualityFrequency<-function(data,minQual,minFreq){
   #Check ranges of minQual and minFreq
-  stopifnot(is.numeric(minQual))
-  stopifnot(is.numeric(minFreq))
-  stopifnot(minQual<=100 && minQual>=0)
-  stopifnot(minFreq>=0 && minFreq<=1)
+  assert_that(is.numeric(minQual))
+  assert_that(is.numeric(minFreq))
+  assert_that(minQual<=100 && minQual>=0)
+  assert_that(minFreq>=0 && minFreq<=1)
   #Check if data has FILTER and NUMS
   if(is.null(data$FILTER)){
     stop("Data does not have FILTER for function filterQualityFrequency.")
