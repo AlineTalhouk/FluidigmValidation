@@ -1,8 +1,8 @@
 #' Title function for finding only data rows whose positions are repetitive
 #'
-#' @param data
+#' @param data whose positions are some repetitive and some not
 #'
-#' @return
+#' @return part of input data with repetitive positions
 #' @export
 #'
 #' @examples
