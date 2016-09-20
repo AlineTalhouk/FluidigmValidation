@@ -7,7 +7,7 @@
 fluidigmValidationMain<-function(){
   #Get user inputs
   dirFiles<-readline(prompt="Please enter the directory of the files:")
-  stopifnot(dir.exists(dirFiles))
+  assert_that(dir.exists(dirFiles))
   checkAllFiles(dirFiles,1)
   #If the operating system is not windows, rename files to windows
   if(Sys.info()["sysname"]!="Windows"){
@@ -56,7 +56,7 @@ fluidigmValidationMain<-function(){
       }
     }
     write.xlsx(allData,file=excelName,sheetName="Not filtered",col.names=TRUE,row.names=FALSE, append=TRUE)
-    colnames(patientData)[1]<-"Name"
+    colnames(patientData)[1]<-"FileName"
     save(patientData,file=nameToSave)
     #Get only the repetitive positions
     patientData<-onlyRepetitivePos(patientData)

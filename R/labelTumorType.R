@@ -9,12 +9,12 @@
 #' @examples
 labelTumorType<-function(data){
   assert_that(is.data.frame(data))
-  assert_that(!is.null(data$Name))
+  assert_that(!is.null(data$FileName))
   tumorType<-NULL
   tempTumorType<-NULL
   for (i in 1:nrow(data)){
-    assert_that(length(strsplit(as.character(data$Name)[i],split="-")[[1]])==6)
-    tempTumorType<-strsplit(as.character(data$Name)[i],split="-")[[1]][5]
+    assert_that(length(strsplit(as.character(data$FileName)[i],split="-")[[1]])==6)
+    tempTumorType<-strsplit(as.character(data$FileName)[i],split="-")[[1]][5]
     if(tempTumorType=="NORMAL"){
       tumorType<-append(tumorType,"N")
     }else if(tempTumorType=="OP"){

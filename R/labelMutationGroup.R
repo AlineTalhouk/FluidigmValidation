@@ -2,7 +2,7 @@
 #'
 #' @param data : data with tumor type (i.e. T1, T2, N) labelled
 #'
-#' @return data with mutation group labelled (i.e. somatic, artifact, germline, normal)
+#' @return data with mutation group labelled (i.e. somatic, artifact, germline, normal) and only whose positions are repetitive
 #' @export
 #'
 #' @examples
@@ -21,6 +21,7 @@ labelMutationGroup<-function(data){
     tempGroup<-NULL
     toAdd<-NULL
     chunk<-data[data$POS==allPos[i],]
+    assert_that(nrow(chunk)>1)
     tempGroup<-chunk$TumorType
     if(notMutationGroupException(tempGroup)){
       if(twiceT1(tempGroup) && !twiceT2(tempGroup) && !onceT2(tempGroup) && !onceN(tempGroup)){
@@ -91,13 +92,10 @@ labelMutationGroup<-function(data){
         toAdd[which(tempGroup=="N")]<-"Normal"
         mutationGroup<-append(mutationGroup,toAdd)
         print(paste("Position",allPos[i],"case 14"))
-      }else{
-        mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
-        stop("Strange case that has broken the 14 cases and not thrown an exception. Contact programmer ASAP")
       }
     }else{
       mutationGroup<-append(mutationGroup,rep("Attention",length(tempGroup)))
-      message(paste("Attention please: exception found for patient",getPatientID(as.character(data[1,1])),"Position ",allPos[i]))
+      message(paste("Attention please: exception found for patient",getPatientID(as.character(data$FileName[1])),"Position ",allPos[i]))
       message(paste("There are",length(tempGroup),"rows of data at this position"))
     }
   }
