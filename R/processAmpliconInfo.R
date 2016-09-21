@@ -8,6 +8,10 @@
 #'
 #' @examples
 processAmpliconInfo<-function(ampliconInfo,data){
+  assert_that(is.data.frame(ampliconInfo))
+  assert_that(is.data.frame(data))
+  assert_that(is.numeric(ampliconInfo$Position))
+  assert_that(is.numeric(data$POS))
   allDepth<-NULL
   chunk<-NULL
   ampliconInfo$Position<-ceiling(ampliconInfo$Position)
