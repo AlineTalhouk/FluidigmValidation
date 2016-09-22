@@ -13,7 +13,7 @@ labelTumorType<-function(data){
   tumorType<-NULL
   tempTumorType<-NULL
   for (i in 1:nrow(data)){
-    assert_that(length(strsplit(as.character(data$FileName)[i],split="-")[[1]])==6)
+    #assert_that(length(strsplit(as.character(data$FileName)[i],split="-")[[1]])==6)
     tempTumorType<-strsplit(as.character(data$FileName)[i],split="-")[[1]][5]
     if(tempTumorType=="NORMAL"){
       tumorType<-append(tumorType,"N")

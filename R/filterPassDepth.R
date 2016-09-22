@@ -12,6 +12,7 @@ filterPassDepth<-function(data,minDepth){
   assert_that(is.numeric(minDepth))
   assert_that(is.numeric(data$QUAL))
   assert_that(!is.null(data$FILTER))
+  assert_that(!is.null(data$DEPTH))
   assert_that(minDepth>=0)
   data<-data[data$QUAL==100,]
   data<-data[data$FILTER=="PASS",]
