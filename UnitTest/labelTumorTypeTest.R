@@ -8,7 +8,7 @@ test.labelTumorType<-function(){
   #Create data frame for testing
   Name<-c("PAT-ID37-DNA-ID48-OP-C3_S19.txt","PAT-ID37-DNA-ID48-OP-D3_S20.txt","PAT-ID37-DNA-ID49-Curettage-E3_S21.txt","PAT-ID37-DNA-ID49-Curettage-F3_S22.txt","PAT-ID37-DNA-ID50-NORMAL-G3_S23.txt")
   val<-1:5
-  normalDf<-FluidigmValidation::labelTumorType(data.frame(Name,val))
+  normalDf<-FluidigmValidation::labelTumorType(data.frame(FileName=Name,val))
   checkEquals(sum(!normalDf==data.frame(FileName=c("PAT-ID37-DNA-ID48-OP-C3_S19.txt","PAT-ID37-DNA-ID48-OP-D3_S20.txt","PAT-ID37-DNA-ID49-Curettage-E3_S21.txt","PAT-ID37-DNA-ID49-Curettage-F3_S22.txt","PAT-ID37-DNA-ID50-NORMAL-G3_S23.txt")
                                   ,val=1:5
                                   ,TumorType=c("T2","T2","T1","T1","N"))),0)
