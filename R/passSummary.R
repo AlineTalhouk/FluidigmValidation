@@ -12,8 +12,8 @@ passSummary<-function(){
   if(Sys.info()["sysname"]!="Windows"){
     renameToTxt(dirFiles)
   }
-  minRows<-as.numeric(readline(prompt="Enter the minimum number of rows for the file to be labelled pass: "))
-  minDepth<-as.numeric(readline(prompt="Enter the minimum depth: "))
+  #minRows<-as.numeric(readline(prompt="Enter the minimum number of rows for the file to be labelled pass: "))
+  #minDepth<-as.numeric(readline(prompt="Enter the minimum depth: "))
   #setwd(dirFiles)
   ampliconInfo<-read.xlsx(paste(dirFiles,"/Mutation for every amplicons.xls",sep=""),sheetIndex = 1,header=TRUE)
   organize(dirFiles)
@@ -41,7 +41,7 @@ passSummary<-function(){
       dataFromFile<-read.table(tempFiles[j],header = FALSE)
       colnames(dataFromFile)<-c("CHROM","POS","ID",	"REF",	"ALT","QUAL",	"FILTER",	"DEPTH"	,"FORMAT","NUMS")
       #Write unfiltered, raw data to a separate excel file
-      write.xlsx(dataFromFile,file=excelName,sheet="Original",col.names=TRUE,row.names = FALSE)
+      #write.xlsx(dataFromFile,file=excelName,sheet="Original",col.names=TRUE,row.names = FALSE)
       #Filter data based on filter and depth
       dataForAmpliconFilter<-filterPassDepth(dataFromFile,0)
       #dataFromFile<-filterPassDepth(dataFromFile,minDepth)
