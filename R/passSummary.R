@@ -44,27 +44,27 @@ passSummary<-function(){
       write.xlsx(dataFromFile,file=excelName,sheet="Original",col.names=TRUE,row.names = FALSE)
       #Filter data based on filter and depth
       dataForAmpliconFilter<-filterPassDepth(dataFromFile,0)
-      dataFromFile<-filterPassDepth(dataFromFile,minDepth)
+      #dataFromFile<-filterPassDepth(dataFromFile,minDepth)
       #Label each file as passed or failed based on number of rows
-      if(nrow(dataFromFile)>=minRows){
-        filteredSheetName<-"filtered-Y"
-        allFilePass<-append(allFilePass,"Passed")
-      }else{
-        filteredSheetName<-"filtered-N"
-        allFilePass<-append(allFilePass,"Failed")
-      }
+      # if(nrow(dataFromFile)>=minRows){
+      #   filteredSheetName<-"filtered-Y"
+      #   allFilePass<-append(allFilePass,"Passed")
+      # }else{
+      #   filteredSheetName<-"filtered-N"
+      #   allFilePass<-append(allFilePass,"Failed")
+      # }
       #Write filtered data to the excel file for that patient
-      save(dataFromFile,file=paste(excelName,".rda",sep=""))
+      #save(dataFromFile,file=paste(excelName,".rda",sep=""))
       fileAmplicon<-processAmpliconInfo(ampliconInfo,dataForAmpliconFilter)
       allAmpliconInfo<-rbind(allAmpliconInfo,fileAmplicon[2,])
-      write.xlsx(dataFromFile,file=excelName,sheetName =filteredSheetName,append=TRUE,row.names = FALSE,col.names<-TRUE)
-      allFileRows<-append(allFileRows,nrow(dataFromFile))
+      #write.xlsx(dataFromFile,file=excelName,sheetName =filteredSheetName,append=TRUE,row.names = FALSE,col.names<-TRUE)
+      #allFileRows<-append(allFileRows,nrow(dataFromFile))
     }
   }
   colnames(allAmpliconInfo)<-ampliconInfo$Region
   rownames(allAmpliconInfo)<-allFileNames
   #setwd(oldDir)
   #Ouput all data to another excel sheet
-  write.xlsx(data.frame(fileName=allFileNames,NumberOfRows=allFileRows,PassOrNot=allFilePass),file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = FALSE,col.names = TRUE)
+  #write.xlsx(data.frame(fileName=allFileNames,NumberOfRows=allFileRows,PassOrNot=allFilePass),file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = FALSE,col.names = TRUE)
   write.xlsx(allAmpliconInfo,file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = TRUE,col.names = TRUE,sheetName="AmpliconInfo",append=TRUE)
 }

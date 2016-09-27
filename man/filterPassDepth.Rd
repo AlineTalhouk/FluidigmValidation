@@ -12,7 +12,7 @@ filterPassDepth(data, minDepth)
 \item{minDepth}{: minimum depth requirement}
 }
 \value{
-data that has passed filter and at or deeper than the minimum depth
+data that has passed filter and have quality 100 and at or deeper than the minimum depth
 }
 \description{
 Title function to subset data that has passed filter and minimum depth requirement. Important: do not call this function if you intend to filter according to quality number

@@ -10,7 +10,7 @@ labelMutationGroup(data)
 \item{data}{: data with tumor type (i.e. T1, T2, N) labelled}
 }
 \value{
-data with mutation group labelled (i.e. somatic, artifact, germline, normal)
+data with mutation group labelled (i.e. somatic, artifact, germline, normal) and only whose positions are repetitive
 }
 \description{
 Title function for labelling mutation group
