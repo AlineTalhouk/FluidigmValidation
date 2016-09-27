@@ -18,7 +18,7 @@ processAmpliconInfo<-function(ampliconInfo,data){
   for(i in 1:nrow(ampliconInfo)){
     chunk<-subset(data,POS==ampliconInfo$Position[i]&CHROM==ampliconInfo$Chrom[i])
     if(nrow(chunk)<1){
-      allDepth<-append(allDepth,NA)
+      allDepth<-append(allDepth,-1)
     }else{
       allDepth<-append(allDepth,paste(chunk$DEPTH,collapse=","))
     }
