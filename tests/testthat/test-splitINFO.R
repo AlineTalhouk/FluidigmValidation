@@ -1,7 +1,8 @@
 context("splitINFO")
 
-test_that("multiplication works", {
-  data("dataForFilterQualityFrequency")
+test_that("splitINFO works", {
+  data("PAT82DNA130CurettageA2S9")
+  dataForFilterQualityFrequency<-PAT82DNA130CurettageA2S9
   filtered<-filterQualityFrequency(dataForFilterQualityFrequency,minQual=80,minFreq=0.03)
   expect_error(splitINFO(subset(filtered,select=-INFO)))
   #splitINFO usually should occur after quality and frequency have been filtered
