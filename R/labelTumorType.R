@@ -13,7 +13,6 @@ labelTumorType<-function(data){
   tumorType<-NULL
   tempTumorType<-NULL
   for (i in 1:nrow(data)){
-    #assert_that(length(strsplit(as.character(data$FileName)[i],split="-")[[1]])==6)
     tempTumorType<-strsplit(as.character(data$FileName)[i],split="-")[[1]][5]
     if(tempTumorType=="NORMAL"){
       tumorType<-append(tumorType,"N")
@@ -25,12 +24,6 @@ labelTumorType<-function(data){
       stop(paste("Cannot get tumor type from file:",data$Name[i],". Please check file name"))
     }
   }
-  colnames(data)[1]<-"FileName"
   data$TumorType<-tumorType
-#   tempFileNames<-NULL
-#   for(i in 1:nrow(data)){
-#     tempFileNames<-append(tempFileNames,strsplit(as.character(data$FileName[i]),split="/")[[1]][3])
-#   }
-#   data$FileName<-tempFileNames
   return(data)
 }
