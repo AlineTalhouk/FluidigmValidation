@@ -5,7 +5,6 @@
 #'
 #' @examples
 passSummary<-function(){
-  #oldDir<-getwd()
   dirFiles<-readline(prompt="Please enter the directory of the files:")
   assert_that(dir.exists(dirFiles))
   checkAllFiles(dirFiles,2)
@@ -14,7 +13,6 @@ passSummary<-function(){
   }
   #minRows<-as.numeric(readline(prompt="Enter the minimum number of rows for the file to be labelled pass: "))
   #minDepth<-as.numeric(readline(prompt="Enter the minimum depth: "))
-  #setwd(dirFiles)
   ampliconInfo<-read.xlsx(paste(dirFiles,"/Mutation for every amplicons.xls",sep=""),sheetIndex = 1,header=TRUE)
   organize(dirFiles)
   filteredSheetName<-NULL
@@ -63,7 +61,6 @@ passSummary<-function(){
   }
   colnames(allAmpliconInfo)<-ampliconInfo$Region
   rownames(allAmpliconInfo)<-allFileNames
-  #setwd(oldDir)
   #Ouput all data to another excel sheet
   #write.xlsx(data.frame(fileName=allFileNames,NumberOfRows=allFileRows,PassOrNot=allFilePass),file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = FALSE,col.names = TRUE)
   write.xlsx(allAmpliconInfo,file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = TRUE,col.names = TRUE,sheetName="AmpliconInfo",append=TRUE)
