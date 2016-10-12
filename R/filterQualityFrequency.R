@@ -26,11 +26,13 @@ filterQualityFrequency<-function(data,minQual,minFreq){
   data<-cbind(data$Name,subset(data,select=-Name))
   colnames(data)[1]<-"Name"
   #Split NUMS
-  tempNUMS<-data.frame(colsplit(data$NUMS,split=":",names=c("Unkown1","Quality","AllelicRatio","Frequency","Unkown2","Unknown3","Unknown4")))
-  data<-cbind(subset(data,select=-NUMS),tempNUMS)
-  #Filter quality
-  data<-data[data$Quality>=minQual,]
-  #filter frequency
-  data<-data[data$Frequency>=minFreq,]
+  if(nrow(data)>0){
+    tempNUMS<-data.frame(colsplit(data$NUMS,split=":",names=c("Unkown1","Quality","AllelicRatio","Frequency","Unkown2","Unknown3","Unknown4")))
+    data<-cbind(subset(data,select=-NUMS),tempNUMS)
+    #Filter quality
+    data<-data[data$Quality>=minQual,]
+    #filter frequency
+    data<-data[data$Frequency>=minFreq,]
+  }
   return(data)
 }
