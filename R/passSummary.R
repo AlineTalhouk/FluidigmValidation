@@ -32,36 +32,25 @@ passSummary<-function(){
   for(i in 1:length(allDirs)){
     tempFiles<-sort(list.files(allDirs[i],full.names = TRUE))
     tempFilesShort<-sort(list.files(allDirs[i]))
+    message(paste("Working on patient",getPatientID(tempFilesShort[1]),"."))
     for(j in 1:length(tempFiles)){
       allFileNames<-append(allFileNames,tempFilesShort[j])
       excelName<-paste(tempFiles[j],".xlsx",sep="")
-      #excelName<-paste(allDirs[i],excelName,sep="/")
       dataFromFile<-read.table(tempFiles[j],header = FALSE)
       colnames(dataFromFile)<-c("CHROM","POS","ID",	"REF",	"ALT","QUAL",	"FILTER",	"DEPTH"	,"FORMAT","NUMS")
-      #Write unfiltered, raw data to a separate excel file
-      #write.xlsx(dataFromFile,file=excelName,sheet="Original",col.names=TRUE,row.names = FALSE)
-      #Filter data based on filter and depth
+
       dataForAmpliconFilter<-filterPassDepth(dataFromFile,0)
-      #dataFromFile<-filterPassDepth(dataFromFile,minDepth)
-      #Label each file as passed or failed based on number of rows
-      # if(nrow(dataFromFile)>=minRows){
-      #   filteredSheetName<-"filtered-Y"
-      #   allFilePass<-append(allFilePass,"Passed")
-      # }else{
-      #   filteredSheetName<-"filtered-N"
-      #   allFilePass<-append(allFilePass,"Failed")
-      # }
-      #Write filtered data to the excel file for that patient
-      #save(dataFromFile,file=paste(excelName,".rda",sep=""))
-      fileAmplicon<-processAmpliconInfo(ampliconInfo,dataForAmpliconFilter)
-      allAmpliconInfo<-rbind(allAmpliconInfo,fileAmplicon[2,])
-      #write.xlsx(dataFromFile,file=excelName,sheetName =filteredSheetName,append=TRUE,row.names = FALSE,col.names<-TRUE)
-      #allFileRows<-append(allFileRows,nrow(dataFromFile))
+      if(is.null(dataForAmpliconFilter)){
+        message(paste(tempFilesShort[j],"has no data after pass filtering, quality 100 filtering, and depth 0 filtering"))
+        allAmpliconInfo<-rbind(allAmpliconInfo,rep("-1",ncol(allAmpliconInfo)))
+      }else{
+        fileAmplicon<-processAmpliconInfo(ampliconInfo,dataForAmpliconFilter)
+        allAmpliconInfo<-rbind(allAmpliconInfo,fileAmplicon[2,])
+      }
     }
   }
   colnames(allAmpliconInfo)<-ampliconInfo$Region
   rownames(allAmpliconInfo)<-allFileNames
-  #Ouput all data to another excel sheet
-  #write.xlsx(data.frame(fileName=allFileNames,NumberOfRows=allFileRows,PassOrNot=allFilePass),file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = FALSE,col.names = TRUE)
+
   write.xlsx(allAmpliconInfo,file=paste(dirFiles,"passSummary.xlsx",sep="/"),row.names = TRUE,col.names = TRUE,sheetName="AmpliconInfo",append=TRUE)
 }

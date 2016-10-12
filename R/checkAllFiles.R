@@ -28,12 +28,10 @@ checkAllFiles<-function(dirFiles,funInd){
     message("All file names ok for fluidigmValidationMain")
   }else if(funInd==2){
     allFiles<-list.files(dirFiles)
+    message("Not checking file names for passSummary.")
     if(!("Mutation for every amplicons.xls"%in%allFiles)){
       stop("Mutation for every amplicons.xls does not exist or is improperly named")
     }
     allFiles<-allFiles[allFiles!="Mutation for every amplicons.xls"]
-    for(i in 1:length(allFiles)){
-      message("Not checking file names for passSummary.")
-    }
   }
 }
