@@ -3,9 +3,10 @@ Title: VALIDATE FLUIDIGM MACHINE DATA
 Version: 0.0.0.9000
 Authors@R: person("Geyi (Johnson)", "Liu", email = "gliu@bccrc.ca", role = c("aut", "cre"))
 Description: It has functionalities to parse and filter fluidigm data based on user-defined freuqncy,
-    depth, and quality thresholds. It can also label tumor type for each row as T1, T2, or N based on+
-    file name. Mutation type (i.e. somatic, germline, normal, artifact are also labeled). It can also
-    tell if a data file has enough useful data based on user-inputs.
+    depth, and quality thresholds. It can also label tumor type for each row as T1, T2, or N based on
+    file name. Mutation type (i.e. somatic, germline, normal, artifact) are also labeled. It can also
+    tell if a data file has enough useful data based on user-inputs. Users can create their own script or functions
+    using existing functions and procedures contained in the package.
 Depends:
     reshape,
     xlsx,
