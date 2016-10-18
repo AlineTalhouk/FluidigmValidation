@@ -1,7 +1,7 @@
 #' Title function to check FC
 #'
 #' @param data : data with INFO column splited
-#'
+#' @author Johnson Liu
 #' @return data that met FC criteria that rows with only Silent_something, Silent, Synonymous_something, Synonymous are deleted
 #' @export
 #'

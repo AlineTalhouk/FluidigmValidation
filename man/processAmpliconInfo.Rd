@@ -17,4 +17,7 @@ data with depth for each amplicon from each file
 \description{
 Title function to perform amplicon information
 }
+\author{
+Johnson Liu
+}
 

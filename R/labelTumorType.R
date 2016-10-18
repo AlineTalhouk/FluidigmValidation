@@ -1,7 +1,7 @@
 #' Title function to label tumor type based on file name
 #'
 #' @param data : fluidigm data
-#'
+#' @author Johnson Liu
 #' @return data whose rows are labeled "T1" if coming from a file with "Curettage", "T2" if coming
 #' from a file containing "OP" and "N" if from a file containing "NORMAL"
 #' @export

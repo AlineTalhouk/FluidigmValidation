@@ -9,4 +9,7 @@ fluidigmValidationMain()
 \description{
 Title main function for processing fluidigm data files
 }
+\author{
+Johnson Liu
+}
 

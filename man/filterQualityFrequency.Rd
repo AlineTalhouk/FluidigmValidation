@@ -19,4 +19,7 @@ modified data with filter only equal to PASS and those that meet minimum frequen
 \description{
 Title function to filter quality and frequency for fluidigmValidationMain
 }
+\author{
+Johnson Liu
+}
 

@@ -2,7 +2,7 @@
 #'
 #' @return
 #' @export
-#'
+#' @author Johnson Liu
 #' @examples
 passSummary<-function(){
   dirFiles<-readline(prompt="Please enter the directory of the files:")

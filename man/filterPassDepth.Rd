@@ -17,4 +17,7 @@ data that has passed filter and have quality 100 and at or deeper than the minim
 \description{
 Title function to subset data that has passed filter and minimum depth requirement. Important: do not call this function if you intend to filter according to quality number
 }
+\author{
+Johnson Liu
+}
 

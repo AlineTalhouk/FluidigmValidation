@@ -15,4 +15,7 @@ data that met FC criteria that rows with only Silent_something, Silent, Synonymo
 \description{
 Title function to check FC
 }
+\author{
+Johnson Liu
+}
 

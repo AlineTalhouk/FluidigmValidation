@@ -15,4 +15,7 @@ data with INFO columns splited into DP, TI, GI, FC and only data with EXON
 \description{
 Title function to split INFO column in fluidigm data
 }
+\author{
+Johnson Liu
+}
 

@@ -15,4 +15,7 @@ TRUE is it is exception false otherwise
 \description{
 Title function to check if a chunk is an mutation group exception (e.g have more than 1 N, or more than 2 T1 or T2)
 }
+\author{
+Johnson Liu
+}
 

@@ -1,7 +1,7 @@
 #' Title function for labelling mutation group
 #'
 #' @param data : data with tumor type (i.e. T1, T2, N) labelled
-#'
+#' @author Johnson Liu
 #' @return data with mutation group labelled (i.e. somatic, artifact, germline, normal) and only whose positions are repetitive
 #' @export
 #'

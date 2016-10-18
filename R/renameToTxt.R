@@ -1,7 +1,7 @@
 #' Title function to rename vcf files to txt files in not using Windows machine if the files are not already txt files
 #'
 #' @param dirFiles : directory for all files at the beginning of the program
-#'
+#' @author Johnson Liu
 #' @return
 #' @export
 #'

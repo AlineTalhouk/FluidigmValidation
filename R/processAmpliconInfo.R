@@ -2,7 +2,7 @@
 #'
 #' @param ampliconInfo : excel sheet for amplicon info, titled "Mutation for every amplicons.xls"
 #' @param data : data from filterPassDepth with depth setting 0
-#'
+#' @author Johnson Liu
 #' @return data with depth for each amplicon from each file
 #' @export
 #'

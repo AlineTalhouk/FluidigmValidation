@@ -1,7 +1,7 @@
 #' Title function to split INFO column in fluidigm data
 #'
 #' @param data with INFO column not splited
-#'
+#' @author Johnson Liu
 #' @return data with INFO columns splited into DP, TI, GI, FC and only data with EXON
 #' @export
 #'

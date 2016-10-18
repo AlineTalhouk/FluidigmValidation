@@ -14,4 +14,7 @@ checkAllFiles(dirFiles, funInd)
 \description{
 Title function to check if files in user-input directory are suitable for fluidigmValidationMain or passSummary
 }
+\author{
+Johnson Liu
+}
 

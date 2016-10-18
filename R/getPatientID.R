@@ -1,7 +1,7 @@
 #' Title function to obtain patient ID from file name
 #'
 #' @param fileName : name of file
-#'
+#' @author Johnson Liu
 #' @return The patient ID name
 #' @export
 #'

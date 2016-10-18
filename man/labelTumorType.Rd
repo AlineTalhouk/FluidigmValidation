@@ -16,4 +16,7 @@ from a file containing "OP" and "N" if from a file containing "NORMAL"
 \description{
 Title function to label tumor type based on file name
 }
+\author{
+Johnson Liu
+}
 

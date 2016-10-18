@@ -15,4 +15,7 @@ part of input data with repetitive positions
 \description{
 Title function for finding only data rows whose positions are repetitive
 }
+\author{
+Johnson Liu
+}
 

@@ -2,7 +2,7 @@
 #'
 #' @param dirFiles : directory of files
 #' @param funInd : 1 for fluidigmValidationMain and 2 for passSummary
-#'
+#' @author Johnson Liu
 #' @return
 #' @export
 #'

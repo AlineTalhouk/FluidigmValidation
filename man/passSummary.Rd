@@ -9,4 +9,7 @@ passSummary()
 \description{
 Title function to summarize raw genome files by taking only data that has passed filter and has enough depth
 }
+\author{
+Johnson Liu
+}
 

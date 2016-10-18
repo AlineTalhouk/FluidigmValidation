@@ -15,4 +15,7 @@ true if the input vector has only 1 "N" and false otherwise
 \description{
 Title function to check if a vector only has 1 "N"
 }
+\author{
+Johnson Liu
+}
 

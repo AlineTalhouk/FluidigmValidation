@@ -1,7 +1,7 @@
 #' Title function to create a folder for each patient and move all files of that patient to that folder created
 #'
 #' @param dirFiles : directory of all original patient files
-#'
+#' @author Johnson Liu
 #' @return
 #' @export
 #'

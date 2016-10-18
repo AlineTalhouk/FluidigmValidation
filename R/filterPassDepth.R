@@ -2,7 +2,7 @@
 #'
 #' @param data : original data, filter with PASS and other measures and depths of all values
 #' @param minDepth : minimum depth requirement
-#'
+#' @author Johnson Liu
 #' @return data that has passed filter and have quality 100 and at or deeper than the minimum depth
 #' @export
 #'

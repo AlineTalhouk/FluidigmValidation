@@ -3,7 +3,7 @@
 #' @param data : data with columns FILTER and NUMS from original fluidigm machine fiels
 #' @param minQual : minimum quality number entered by user
 #' @param minFreq : minimum frequency entered by user
-#'
+#' @author Johnson Liu
 #' @return modified data with filter only equal to PASS and those that meet minimum frequency and quality requirements.
 #' @export
 #'

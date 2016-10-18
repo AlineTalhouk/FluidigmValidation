@@ -12,4 +12,7 @@ organize(dirFiles)
 \description{
 Title function to create a folder for each patient and move all files of that patient to that folder created
 }
+\author{
+Johnson Liu
+}
 

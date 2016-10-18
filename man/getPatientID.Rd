@@ -18,4 +18,7 @@ Title function to obtain patient ID from file name
 \examples{
 "PAT-ID33-DNA-ID141-Curettage-E4_S122" returns "ID33"
 }
+\author{
+Johnson Liu
+}
 
