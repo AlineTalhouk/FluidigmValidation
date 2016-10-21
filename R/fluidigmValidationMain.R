@@ -58,6 +58,9 @@ fluidigmValidationMain<-function(){
     write.xlsx(allData,file=excelName,sheetName="Not filtered",col.names=TRUE,row.names=FALSE, append=TRUE)
     colnames(patientData)[1]<-"FileName"
     save(patientData,file=nameToSave)
+    
+    #Add step to write all data after all filtering (before taking out repetitive positions and labelling tumor type)
+    write.xlsx(patientData,file=excelName,sheetName="filtered with all positions", col.names=TRUE, row.names=FALSE, append=TRUE)
     #Get only the repetitive positions
     patientData<-onlyRepetitivePos(patientData)
     #Label tumor type based on file name
